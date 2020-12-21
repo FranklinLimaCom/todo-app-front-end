@@ -76,7 +76,7 @@ export default {
   methods: {
     newTodo() {
       this.todoList.undone.push(JSON.parse(JSON.stringify(this.todo)));
-      axios.post("http://localhost:8080/todos", this.todo);
+      axios.post("http://localhost:8081/todos", this.todo);
       this.todo = { name: "", task: "" };
     },
   },

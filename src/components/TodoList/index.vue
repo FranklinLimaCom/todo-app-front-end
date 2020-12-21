@@ -114,11 +114,11 @@ export default {
     };
   },
   mounted() {
-    axios.get("http://localhost:8080/todos").then((res) => {
+    axios.get("http://localhost:8081/todos").then((res) => {
       console.log(res.data);
       this.todoList.undone = res.data;
     });
-    axios.get("http://localhost:8080/todos?done=true").then((res) => {
+    axios.get("http://localhost:8081/todos?done=true").then((res) => {
       console.log(res.data);
       this.todoList.done = res.data;
     });
@@ -127,20 +127,20 @@ export default {
     checkTodo(todo, index) {
       this.todoList.done.push(JSON.parse(JSON.stringify(todo)));
       this.todoList.undone.splice(index, 1);
-      axios.put(`http://localhost:8080/todos/${todo.id}`, { done: true });
+      axios.put(`http://localhost:8081/todos/${todo.id}`, { done: true });
     },
     uncheckTodo(todo, index) {
       this.todoList.undone.push(JSON.parse(JSON.stringify(todo)));
       this.todoList.done.splice(index, 1);
-      axios.put(`http://localhost:8080/todos/${todo.id}`, { done: false });
+      axios.put(`http://localhost:8081/todos/${todo.id}`, { done: false });
     },
     async deleteTodo(todo) {
-      await axios.delete(`http://localhost:8080/todos/${todo.id}`);
-      await axios.get("http://localhost:8080/todos").then((res) => {
+      await axios.delete(`http://localhost:8081/todos/${todo.id}`);
+      await axios.get("http://localhost:8081/todos").then((res) => {
         this.todoList.undone = res.data;
         this.$forceUpdate();
       });
-      await axios.get("http://localhost:8080/todos?done=true").then((res) => {
+      await axios.get("http://localhost:8081/todos?done=true").then((res) => {
         this.todoList.done = res.data;
         this.$forceUpdate();
       });
