@@ -1,4 +1,4 @@
-# hello-world
+# todo-app-front-end
 
 ## Project setup
 ```
